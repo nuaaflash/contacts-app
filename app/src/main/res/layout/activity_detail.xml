@@ -64,27 +64,6 @@
                 android:enabled="false" />
         </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="3dp"
-            android:layout_marginBottom="3dp"
-            android:orientation="horizontal">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/gender"
-                android:textSize="20sp"/>
-            <EditText
-                android:id="@+id/contact_gender"
-                android:inputType="text"
-                android:textColor="@color/grey_900"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:gravity="top"
-                android:focusable="false"
-                android:enabled="false" />
-        </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -95,77 +74,11 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/phone"
+                android:text="@string/money"
                 android:textSize="20sp"/>
             <EditText
                 android:id="@+id/contact_phone"
                 android:inputType="phone"
-                android:textColor="@color/grey_900"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:gravity="top"
-                android:focusable="false"
-                android:enabled="false" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="3dp"
-            android:layout_marginBottom="3dp"
-            android:orientation="horizontal">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/email"
-                android:textSize="20sp"/>
-            <EditText
-                android:id="@+id/contact_email"
-                android:inputType="textEmailAddress"
-                android:textColor="@color/grey_900"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:gravity="top"
-                android:focusable="false"
-                android:enabled="false" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="3dp"
-            android:layout_marginBottom="3dp"
-            android:orientation="horizontal">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/address"
-                android:textSize="20sp"/>
-            <EditText
-                android:id="@+id/contact_address"
-                android:inputType="text"
-                android:textColor="@color/grey_900"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:gravity="top"
-                android:focusable="false"
-                android:enabled="false" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="3dp"
-            android:layout_marginBottom="3dp"
-            android:orientation="horizontal">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/relationship"
-                android:textSize="20sp"/>
-            <EditText
-                android:id="@+id/contact_relationship"
-                android:inputType="text"
                 android:textColor="@color/grey_900"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
@@ -194,31 +107,6 @@
                 android:gravity="top"
                 android:focusable="false"
                 android:enabled="false" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="3dp"
-            android:orientation="horizontal">
-            <Button
-                android:id="@+id/call"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:layout_marginRight="5dp"
-                android:background="@color/orange_500"
-                android:textColor="@color/white"
-                android:text="@string/call" />
-            <Button
-                android:id="@+id/sms"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:layout_marginLeft="5dp"
-                android:background="@color/orange_500"
-                android:textColor="@color/white"
-                android:text="@string/sms" />
         </LinearLayout>
 
     </LinearLayout>
