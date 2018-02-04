@@ -2,14 +2,12 @@ package com.babytt.model;
 
 public class Account {
 	private int id;
-	private String number=null;       //���
 	private String name=null;         //����
 	private String money=null;        //�ֻ���
 	private String remark=null;       //��ע
 	//���캯��
 	public Account(){
 		id=0;
-		number="";
 		name="";
 		money="";
 		remark="";
@@ -21,14 +19,6 @@ public class Account {
 	public int getId(){
 		return id;
 	}
-	//��ȡ��������ϵ�˱��
-	public void setNumber(String number){
-		this.number = number;
-	}
-	public String getNumber(){
-		return number;
-	}
-	//��ȡ��������ϵ������
 	public void setName(String name){
 		this.name = name;
 	}

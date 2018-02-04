@@ -44,8 +44,6 @@ public class DetailActivity extends ActionBarActivity {
         }else{
             service = new Service(this);
             account = service.getById(id);
-
-            number.setText(account.getNumber());
             name.setText(account.getName());
             money.setText(account.getMoney());
             remark.setText(account.getRemark());
@@ -57,11 +55,9 @@ public class DetailActivity extends ActionBarActivity {
 
 
     public void init(){
-        number = (EditText)findViewById(R.id.account_number);  // get all EditText views by Id
         name = (EditText)findViewById(R.id.account_name);
-        money = (EditText)findViewById(R.id.account_phone);
+        money = (EditText)findViewById(R.id.account_money);
         remark = (EditText)findViewById(R.id.account_remark);
-        image = (ImageView)findViewById(R.id.image_button);
     }
 
 
@@ -123,8 +119,6 @@ public class DetailActivity extends ActionBarActivity {
         }else{
             service = new Service(this);
             account = service.getById(id);
-
-            number.setText(account.getNumber());
             name.setText(account.getName());
             remark.setText(account.getRemark());
         }

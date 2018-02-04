@@ -4,10 +4,16 @@ import com.babytt.model.Account;
 import com.babytt.service.Service;
 
 import android.support.v7.app.ActionBarActivity;
+import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.RadioButton;
+import android.widget.RadioGroup.OnCheckedChangeListener;
+import android.widget.RadioGroup;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 public class AddActivity extends ActionBarActivity {
@@ -17,47 +23,33 @@ public class AddActivity extends ActionBarActivity {
     private EditText money=null;
     private EditText remark=null;
     private ImageView image=null;
-
     private Service service=null;
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_add);
 
-//    @Override
-//    protected void onCreate(Bundle savedInstanceState) {
-//        super.onCreate(savedInstanceState);
-//        setContentView(R.layout.activity_add);
-//
-//        service = new Service(this);
-//        init();  // init
-//
-//        // add data source to Spinner
-//        ArrayAdapter<String> adapter = new ArrayAdapter<>(this,
-//                android.R.layout.simple_spinner_item,relationship);
-//        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-//        spinner.setAdapter(adapter); // add the adapter to spinner
-//
-//        // 标题栏添加“返回”菜单
-//        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-//    }
+        service = new Service(this);
+        init();  // init
+
+        // 标题栏添加“返回”菜单
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+    }
 
 
     // init - get views by Id
     private void init(){
-        number = (EditText)findViewById(R.id.account_number);  // get all EditText views
         name = (EditText)findViewById(R.id.account_name);
         money = (EditText)findViewById(R.id.account_money);
         remark = (EditText)findViewById(R.id.account_remark);
-//        spinner = (Spinner)findViewById(R.id.spinner);  // get Spinner view by Id
-//        group = (RadioGroup)findViewById(R.id.group);  // get RadioGroup view by Id
-//        group.setOnCheckedChangeListener(new GroupListener());
-        image = (ImageView)findViewById(R.id.image_view);
     }
 
 
     // get Input text
     private Account getContent(){
         Account account = new Account();
-        account.setNumber(number.getText().toString());
         account.setName(name.getText().toString());
-        account.setPhone(money.getText().toString());
+        account.setMoney(money.getText().toString());
         account.setRemark(remark.getText().toString());
         return account;
     }
@@ -72,9 +64,7 @@ public class AddActivity extends ActionBarActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
         if (id == R.id.action_save) {  // 保存
-            if(number.getText().toString().equals(""))
-                Toast.makeText(this, "编号不能为空", Toast.LENGTH_LONG).show();
-            else if(name.getText().toString().equals(""))
+            if(name.getText().toString().equals(""))
                 Toast.makeText(this, "姓名不能为空", Toast.LENGTH_LONG).show();
             else if(money.getText().toString().equals(""))
                 Toast.makeText(this, "金额不能为空", Toast.LENGTH_LONG).show();

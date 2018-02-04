@@ -20,11 +20,9 @@ import android.widget.Toast;
 
 public class ModifyActivity extends ActionBarActivity {
 
-    private EditText number=null;    // declare all EditText views
     private EditText name=null;
     private EditText money=null;
     private EditText remark=null;
-    private ImageView image=null;
 
     private Service service=null;
     private Account contact=null;
@@ -45,8 +43,6 @@ public class ModifyActivity extends ActionBarActivity {
             finish();
         }else{
             contact = service.getById(id);
-
-            number.setText(contact.getNumber());
             name.setText(contact.getName());
             money.setText(contact.getMoney());
         }
@@ -58,11 +54,9 @@ public class ModifyActivity extends ActionBarActivity {
 
     // init
     private void init(){
-        number = (EditText)findViewById(R.id.number);  // get all EditText views by id
         name = (EditText)findViewById(R.id.name);
         money = (EditText)findViewById(R.id.money);
         remark = (EditText)findViewById(R.id.remark);
-        image = (ImageView)findViewById(R.id.image_view);
     }
 
 
@@ -70,7 +64,6 @@ public class ModifyActivity extends ActionBarActivity {
     private Account getContent(){
         Account a = new Account();
         a.setId(contact.getId());
-        a.setNumber(number.getText().toString());
         a.setName(name.getText().toString());
         a.setMoney(money.getText().toString());
         a.setRemark(remark.getText().toString());
@@ -87,9 +80,7 @@ public class ModifyActivity extends ActionBarActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
         if (id == R.id.action_save) {
-            if(number.getText().toString().equals(""))
-                Toast.makeText(this, "编号不能为空", Toast.LENGTH_LONG).show();
-            else if(name.getText().toString().equals(""))
+            if(name.getText().toString().equals(""))
                 Toast.makeText(this, "姓名不能为空", Toast.LENGTH_LONG).show();
             else if(money.getText().toString().equals(""))
                 Toast.makeText(this, "金额不能为空", Toast.LENGTH_LONG).show();

@@ -21,7 +21,6 @@ public class DBOperation{
 		SQLiteDatabase db = database.getWritableDatabase();
 		if(account != null){
 			ContentValues value = new ContentValues();
-			value.put("number", account.getNumber());
 			value.put("name", account.getName());
 			value.put("money", account.getMoney());
 			value.put("remark", account.getRemark());
@@ -40,18 +39,17 @@ public class DBOperation{
 		}	
 		List list = null;
 		SQLiteDatabase db = database.getReadableDatabase();
-		String sql = "select * from account where name like ? or phone like ?";
-		String[] params = new String[]{"%"+queryName+"%", "%"+queryName+"%"};
+		String sql = "select * from account where name like ?";
+		String[] params = new String[]{"%"+queryName+"%"};
 		Cursor cursor = db.rawQuery(sql, params);
 		
 		list = new ArrayList();
 		while(cursor.moveToNext()){
 			Account account = new Account();
 			account.setId(cursor.getInt(0));
-			account.setNumber(cursor.getString(1));
-			account.setName(cursor.getString(2));
-			account.setMoney(cursor.getString(3));
-			account.setRemark(cursor.getString(8));
+			account.setName(cursor.getString(1));
+			account.setMoney(cursor.getString(2));
+			account.setRemark(cursor.getString(3));
 			list.add(account);
 		}
 		cursor.close();
@@ -69,10 +67,9 @@ public class DBOperation{
 		while(cursor.moveToNext()){
 			Account account = new Account();
 			account.setId(cursor.getInt(0));
-			account.setNumber(cursor.getString(1));
-			account.setName(cursor.getString(2));
-			account.setMoney(cursor.getString(3));
-			account.setRemark(cursor.getString(8));
+			account.setName(cursor.getString(1));
+			account.setMoney(cursor.getString(2));
+			account.setRemark(cursor.getString(3));
 			list.add(account);
 		}
 		cursor.close();
@@ -90,10 +87,9 @@ public class DBOperation{
 			if(cursor.moveToNext()){
 				account = new Account();
 				account.setId(cursor.getInt(0));
-				account.setNumber(cursor.getString(1));
-				account.setName(cursor.getString(2));
-				account.setMoney(cursor.getString(3));
-				account.setRemark(cursor.getString(8));
+				account.setName(cursor.getString(1));
+				account.setMoney(cursor.getString(2));
+				account.setRemark(cursor.getString(3));
 			}
 			cursor.close();
 			db.close();
@@ -105,15 +101,12 @@ public class DBOperation{
 	public boolean update(Account account){
 		if(account != null){
 			SQLiteDatabase db = database.getWritableDatabase();
-//			String sql = "update account set number = ?, name = ?, " +
-//			             "phone = ?, email = ?, address = ?, gender = ?, " +
-//					     "relationship = ?, remark = ? where _id = ?";
-//			Object[] params = new Object[]{account.getNumber(),account.getName(),account.getPhone(),
-//					                       account.getEmail(),account.getAddress(),account.getGender(),
-//					                       account.getRelationship(),account.getRemark(),account.getId()};
-//			db.execSQL(sql, params);
+			String sql = "update account set number = ?, name = ?, " +
+			             "money = ?, " + "remark = ? where _id = ?";
+			Object[] params = new Object[]{account.getName(),account.getMoney(),
+					                       account.getRemark(),account.getId()};
+			db.execSQL(sql, params);
 			ContentValues value = new ContentValues();
-			value.put("number", account.getNumber());
 			value.put("name", account.getName());
 			value.put("money", account.getMoney());
 			value.put("remark", account.getRemark());

@@ -6,12 +6,10 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 public class DBAccount extends SQLiteOpenHelper {
 	
-    private static final String DATABASE_NAME = "contact.db";
+    private static final String DATABASE_NAME = "account.db";
     private static final int DATABASE_VERSION = 1;
-    private static String sql = "create table contact (" + "_id integer primary key autoincrement, "
-                                + "number text, " + "name text, " + "phone text, " + "email text, "
-    		                    + "address text, " + "gender text, " + "relationship text, "
-                                + "remark text)";
+    private static String sql = "create table account (" + "_id integer primary key autoincrement, "
+                                + "name text, " + "money text, " + "remark text)";
     
 	public DBAccount(Context context) {
 		super(context, DATABASE_NAME, null, DATABASE_VERSION);

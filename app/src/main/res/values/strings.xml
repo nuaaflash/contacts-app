@@ -8,11 +8,12 @@
     <string name="title_activity_add">添加账目</string>
     <string name="number">内部编号</string>
     <string name="name">姓名</string>
+    <string name="more">更多</string>
     <string name="money">金额</string>
     <string name="remark">备注</string>
     <string name="number_hint">请输入编号，不能为空</string>
     <string name="name_hint">请输入姓名，不能为空</string>
-    <string name="phone_hint">请输入电话号码，不能为空</string>
+    <string name="money_hint">请输入金额，不能为空</string>
     <string name="email_hint">请输入邮箱</string>
     <string name="address_hint">请输入地址</string>
     <string name="remark_hint">请输入备注信息</string>

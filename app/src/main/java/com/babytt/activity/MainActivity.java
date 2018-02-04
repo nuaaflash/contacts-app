@@ -36,10 +36,10 @@ import android.widget.Toast;
 
 public class MainActivity extends ActionBarActivity {
 
-    private ListView contact_list=null;
+    private ListView account_list=null;
     private EditText search=null;
 
-    private List contacts=null;
+    private List accounts=null;
     private Account account=null;
     private Service service=null;
 
@@ -66,9 +66,9 @@ public class MainActivity extends ActionBarActivity {
 
     // init
     private void init(){
-        contact_list = (ListView)findViewById(R.id.contact_list);
-        contact_list.setCacheColorHint(Color.TRANSPARENT);
-        contact_list.setOnItemClickListener(new ViewItemListener());
+        account_list = (ListView)findViewById(R.id.account_list);
+        account_list.setCacheColorHint(Color.TRANSPARENT);
+        account_list.setOnItemClickListener(new ViewItemListener());
         search = (EditText)findViewById(R.id.search);
         search.addTextChangedListener(new SearchTextChangedListener());
     }
@@ -78,22 +78,22 @@ public class MainActivity extends ActionBarActivity {
     private void getContent(){
         List mylist = new ArrayList();
         String queryName = search.getText().toString();
-        contacts = service.getByName(queryName); // get an contacts array
-        if(contacts != null){
-            for(int i=0; i<contacts.size(); i++){
-                Account account = (Account)contacts.get(i);
+        accounts = service.getByName(queryName); // get an accounts array
+        if(accounts != null){
+            for(int i=0; i<accounts.size(); i++){
+                Account account = (Account)accounts.get(i);
                 // HashMap
                 HashMap map = new HashMap();
                 map.put("tv_name", account.getName());
-                map.put("tv_phone", account.getMoney());
+                map.put("tv_money", account.getMoney());
                 mylist.add(map);
             }
         }
 
         SimpleAdapter adapter = new SimpleAdapter(this, mylist,R.layout.my_list_item,
-                new String[] {"tv_image","tv_name","tv_phone"},
-                new int[] {R.id.user_image,R.id.item_name,R.id.item_phone});
-        contact_list.setAdapter(adapter);
+                new String[] {"tv_name","tv_money"},
+                new int[] {R.id.item_name,R.id.item_money});
+        account_list.setAdapter(adapter);
     }
 
 
@@ -107,18 +107,18 @@ public class MainActivity extends ActionBarActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
-        if (id == R.id.add_contact) { // 添加联系人
+        if (id == R.id.add_account) {
             Intent intent = new Intent(MainActivity.this, AddActivity.class);
             startActivity(intent);
             return true;
         }
-        if(id == R.id.more) {  // 弹出菜单
-            if(popupWindow.isShowing())
-                popupWindow.dismiss();
-            else
-                popUp();
-            return true;
-        }
+//        if(id == R.id.more) {  // 弹出菜单
+//            if(popupWindow.isShowing())
+//                popupWindow.dismiss();
+//            else
+//                popUp();
+//            return true;
+//        }
         return super.onOptionsItemSelected(item);
     }
 
@@ -149,13 +149,6 @@ public class MainActivity extends ActionBarActivity {
         optionDialogView = li.inflate(R.layout.option_dialog, null);
 
         optionDialog = new AlertDialog.Builder(this).setView(optionDialogView).create();
-        ImageButton ibCall = (ImageButton)optionDialogView.findViewById(R.id.dialog_call);
-        ImageButton ibView = (ImageButton)optionDialogView.findViewById(R.id.dialog_view);
-        ImageButton ibSms = (ImageButton)optionDialogView.findViewById(R.id.dialog_sms);
-
-        ibCall.setOnClickListener(new ImageButtonListener());
-        ibView.setOnClickListener(new ImageButtonListener());
-        ibSms.setOnClickListener(new ImageButtonListener());
         return optionDialog;
     }
 
@@ -194,11 +187,11 @@ public class MainActivity extends ActionBarActivity {
     }
 
 
-    //显示PopupWindow菜单
-    private void popUp(){
-        //设置位置
-        popupWindow.showAsDropDown(this.findViewById(R.id.more), 0, 2);
-    }
+//    //显示PopupWindow菜单
+//    private void popUp(){
+//        //设置位置
+//        popupWindow.showAsDropDown(this.findViewById(R.id.more), 0, 2);
+//    }
 
 
     //**************** internal class as Listener ******************
@@ -222,50 +215,50 @@ public class MainActivity extends ActionBarActivity {
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position,
                                 long id) {
-            // get the account from the contacts array.
-            account = (Account)contacts.get(position);
+            // get the account from the accounts array.
+            account = (Account)accounts.get(position);
             showDialog(OPTION_DIALOG);
 
         }
     }
-    class ImageButtonListener implements OnClickListener{
-        @Override
-        public void onClick(View v) {
-            switch(v.getId())
-            {
-                case R.id.dialog_call:
-                    if(account.getPhone().equals("")){
-                        Toast.makeText(MainActivity.this, "没有手机号码", Toast.LENGTH_LONG).show();
-                    }else{
-                        Intent intent = new Intent();
-                        intent.setAction(Intent.ACTION_CALL);
-                        intent.setData(Uri.parse("tel:"+account.getPhone()));
-                        intent.addCategory("android.intent.category.DEFAULT");
-                        startActivity(intent);
-                    }
-                    dismissDialog(OPTION_DIALOG);
-                    break;
-                case R.id.dialog_view:
-                    // Send an intent, Active the detailActivity
-                    Intent intent = new Intent(MainActivity.this, DetailActivity.class);
-                    // Send the id of the selected account by the intent
-                    intent.putExtra("id", account.getId());
-                    startActivity(intent);
-                    dismissDialog(OPTION_DIALOG);
-                    break;
-                case R.id.dialog_sms:
-                    if(account.getPhone().equals("")){
-                        Toast.makeText(MainActivity.this, "没有手机号码", Toast.LENGTH_LONG).show();
-                    }else{
-                        Intent intent1 = new Intent();
-                        intent1.setAction(Intent.ACTION_SENDTO);
-                        intent1.setData(Uri.parse("smsto:"+account.getPhone()));
-                        intent1.addCategory("android.intent.category.DEFAULT");
-                        startActivity(intent1);
-                    }
-                    dismissDialog(OPTION_DIALOG);
-                    break;
-            }
-        }
-    }
+//class ImageButtonListener implements OnClickListener{
+//    @Override
+//    public void onClick(View v) {
+//        switch(v.getId())
+//        {
+//            case R.id.dialog_call:
+//                if(account.getPhone().equals("")){
+//                    Toast.makeText(MainActivity.this, "没有手机号码", Toast.LENGTH_LONG).show();
+//                }else{
+//                    Intent intent = new Intent();
+//                    intent.setAction(Intent.ACTION_CALL);
+//                    intent.setData(Uri.parse("tel:"+account.getPhone()));
+//                    intent.addCategory("android.intent.category.DEFAULT");
+//                    startActivity(intent);
+//                }
+//                dismissDialog(OPTION_DIALOG);
+//                break;
+//            case R.id.dialog_view:
+//                // Send an intent, Active the detailActivity
+//                Intent intent = new Intent(MainActivity.this, DetailActivity.class);
+//                // Send the id of the selected account by the intent
+//                intent.putExtra("id", account.getId());
+//                startActivity(intent);
+//                dismissDialog(OPTION_DIALOG);
+//                break;
+//            case R.id.dialog_sms:
+//                if(account.getPhone().equals("")){
+//                    Toast.makeText(MainActivity.this, "没有手机号码", Toast.LENGTH_LONG).show();
+//                }else{
+//                    Intent intent1 = new Intent();
+//                    intent1.setAction(Intent.ACTION_SENDTO);
+//                    intent1.setData(Uri.parse("smsto:"+account.getPhone()));
+//                    intent1.addCategory("android.intent.category.DEFAULT");
+//                    startActivity(intent1);
+//                }
+//                dismissDialog(OPTION_DIALOG);
+//                break;
+//        }
+//    }
+//}
 }
